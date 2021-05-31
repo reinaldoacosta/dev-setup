@@ -5,15 +5,11 @@ alias ga='git add .'
 alias gp='git push '
 alias gpl='git pull '
 alias docs='cd Documents'
-
 alias fixsound='sudo alsa force-reload'
 alias ns='screen -S '
 alias dr='screen -dr '
-
 alias serverpc="ssh root@serverpc -p 222"
-
 alias gomarket='cd ~/Documents/moo/market'
-
 alias update="sudo apt update"
 alias upgrade="sudo apt upgrade -y"
 alias list="apt list --upgradable"
@@ -28,3 +24,29 @@ alias tor="sudo -u debian-tor tor"
 alias edithost='sudo nano /etc/hosts'
 alias droplet="ssh root@67.205.129.77"
 alias par="php artisan "
+alias fixsound='sudo alsa force-reload'
+alias ns='screen -S '
+alias dr='screen -dr '
+alias godev="cd ~/Documents/dev"
+alias avisar='play /usr/share/sounds/ubuntu/notifications/Mallet.ogg -q -V1'
+alias fixsound='sudo alsa force-reload'
+alias ns='screen -S '
+alias dr='screen -dr '
+alias godev="cd ~/Documents/dev"
+alias avisar='play /usr/share/sounds/ubuntu/notifications/Mallet.ogg -q -V1'
+
+#Add laravel to path
+PATH=$PATH:$HOME/.config/composer/vendor/bin
+
+#add monero
+PATH=$PATH:/opt/monero
+PATH=$PATH:/opt/monero/extras
+PATH=$PATH:~/.yarn/bin
+#add android sdk
+PATH=$PATH:~/Android/Sdk/platform-tools
+PATH=$PATH:~/Android/Sdk/tools/bin
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools

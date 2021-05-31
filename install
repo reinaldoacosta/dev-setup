@@ -2,6 +2,9 @@
 
 cp alias ~/.ralias
 
-echo "if [ -f ~/.ralias ]; then \n\t . ~/.ralias \nfi" >> ~/.bashrc
+
+grep -qxF 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' ~/.bashrc || echo 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' >> ~/.bashrc
+
+# echo "if [ -f ~/.ralias ]; then \n\t . ~/.ralias \nfi" >> ~/.bashrc
 
 . ~/.bashrc
