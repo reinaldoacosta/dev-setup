@@ -1,0 +1,7 @@
+#!/bin/sh
+
+cp alias ~/.ralias
+
+echo "if [ -f ~/.ralias ]; then \n\t . ~/.ralias \nfi" >> ~/.bashrc
+
+. ~/.bashrc
