@@ -12,7 +12,7 @@ alias fixsound='sudo alsa force-reload'
 alias ns='screen -S '
 alias dr='screen -dr '
 alias serverpc="ssh root@serverpc -p 222"
-alias gomarket='cd ~/Documents/moo/market'
+alias gom='cd ~/Documents/moo/market'
 alias update="sudo apt update"
 alias upgrade="sudo apt upgrade -y"
 alias list="apt list --upgradable"
@@ -35,7 +35,6 @@ alias avisar='play /usr/share/sounds/ubuntu/notifications/Mallet.ogg -q -V1'
 alias fixsound='sudo alsa force-reload'
 alias ns='screen -S '
 alias dr='screen -dr '
-alias godev="cd ~/Documents/dev"
 alias avisar='play /usr/share/sounds/ubuntu/notifications/Mallet.ogg -q -V1'
 
 #Add laravel to path
