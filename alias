@@ -13,6 +13,7 @@ alias ns='screen -S '
 alias dr='screen -dr '
 alias serverpc="ssh root@serverpc -p 222"
 alias gom='cd ~/Documents/moo/market'
+alias got='cd ~/Documents/services'
 alias update="sudo apt update"
 alias upgrade="sudo apt upgrade -y"
 alias list="apt list --upgradable"
@@ -36,7 +37,6 @@ alias fixsound='sudo alsa force-reload'
 alias ns='screen -S '
 alias dr='screen -dr '
 alias avisar='play /usr/share/sounds/ubuntu/notifications/Mallet.ogg -q -V1'
-
 #Add laravel to path
 PATH=$PATH:$HOME/.config/composer/vendor/bin
 
