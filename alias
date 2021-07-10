@@ -43,6 +43,7 @@ alias dcub="docker-compose up -d --build"
 alias dcs="docker-compose stop"
 alias dcd="docker-compose down"
 alias dps="docker ps"
+alias deti="docker exec -ti "
 #Add laravel to path
 PATH=$PATH:$HOME/.config/composer/vendor/bin
 
