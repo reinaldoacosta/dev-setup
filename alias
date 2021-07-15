@@ -45,6 +45,7 @@ alias dcd="docker-compose down"
 alias dps="docker ps"
 alias deti="docker exec -ti "
 alias lola="cd ~/Documents/lola"
+alias loladev="ssh root@34.71.242.113"
 #Add laravel to path
 PATH=$PATH:$HOME/.config/composer/vendor/bin
 
