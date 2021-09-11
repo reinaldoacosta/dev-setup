@@ -23,11 +23,11 @@ alias py="python"
 #alias python='python3'
 #alias pip="pip3"
 alias root="sudo -s -E"
-alias lap="ssh reinaldo@laptop"
+alias lap="ssh reinaldo@rog"
 alias checktor='curl --socks5 127.0.0.1:9050 http://checkip.amazonaws.com/'
 alias tor="sudo -u debian-tor tor"
 alias edithost='sudo nano /etc/hosts'
-alias droplet="ssh root@67.205.129.77"
+alias droplet="ssh root@142.93.13.120"
 alias par="php artisan "
 alias fixsound='sudo alsa force-reload'
 alias ns='screen -S '
@@ -44,8 +44,7 @@ alias dcs="docker-compose stop"
 alias dcd="docker-compose down"
 alias dps="docker ps"
 alias deti="docker exec -ti "
-alias lola="cd ~/Documents/lola"
-alias loladev="ssh root@34.71.242.113"
+alias dstat="docker stats"
 #Add laravel to path
 PATH=$PATH:$HOME/.config/composer/vendor/bin
 
