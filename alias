@@ -40,6 +40,7 @@ alias dr='screen -dr '
 alias avisar='play /usr/share/sounds/ubuntu/notifications/Mallet.ogg -q -V1'
 alias dcud="docker-compose up -d"
 alias dcub="docker-compose up -d --build"
+alias dcu="docker-compose up"
 alias dcs="docker-compose stop"
 alias dcd="docker-compose down"
 alias dps="docker ps"
