@@ -2,6 +2,7 @@
 
 cp alias ~/.ralias
 
+cp nanorc ~/.nanorc
 
 grep -qxF 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' ~/.bashrc || echo 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' >> ~/.bashrc
 
