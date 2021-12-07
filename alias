@@ -49,6 +49,11 @@ alias deti="docker exec -ti "
 alias dstat="docker stats"
 #Add laravel to path
 PATH=$PATH:$HOME/.config/composer/vendor/bin
+alias cd1="cd .."
+alias cd2="cd ../.."
+alias cd3="cd ../../.."
+alias cd4="cd ../../../.."
+alias cd5="cd ../../../../.."
 
 #add monero
 PATH=$PATH:/opt/monero
