@@ -1,11 +1,101 @@
 #!/bin/sh
 
-cp alias ~/.ralias
+if ! command -v sudo &> /dev/null; then
+  DEBIAN_FRONTEND=non_interactive apt install sudo -y
+fi
 
-cp nanorc ~/.nanorc
+if ! command -v ag &> /dev/null; then
+  DEBIAN_FRONTEND=non_interactive sudo apt install silversearcher-ag -y
+fi
+
+if ! command -v vim &> /dev/null; then
+  DEBIAN_FRONTEND=non_interactive sudo apt install vim -y
+fi
+
+if ! command -v tmux &> /dev/null; then
+  DEBIAN_FRONTEND=non_interactive sudo apt install tmux -y
+fi
+
+if ! command -v zsh &> /dev/null; then
+  DEBIAN_FRONTEND=non_interactive sudo apt install zsh -y
+fi
+
+if ! command -v wget &> /dev/null; then
+  DEBIAN_FRONTEND=non_interactive sudo apt install wget -y
+fi
+
+if ! command -v curl &> /dev/null; then
+  DEBIAN_FRONTEND=non_interactive sudo apt install curl -y
+fi
+
+if command -v zsh &> /dev/null; then
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+#install go
+curl -OL https://golang.org/dl/go1.16.7.linux-amd64.tar.gz
+sudo tar -C /usr/local -xvf go1.16.7.linux-amd64.tar.gz
+rm go*.gz
+
+
+if [ -f "$HOME/.aliases" ] ; then
+  rm -f ~/.aliases
+fi
+
+if [ -f "$HOME/.gemrc" ] ; then
+  rm -f ~/.gemrc
+fi
+if [ -f "$HOME/.gitconfig" ] ; then
+  rm -f ~/.gitconfig
+fi
+if [ -f "$HOME/.tmux.conf" ] ; then
+  rm -f ~/.tmux.conf
+fi
+if [ -f "$HOME/.zshrc" ] ; then
+  rm -f ~/.zshrc
+fi
+if [ -f "$HOME/.git-authors" ] ; then
+  rm -f ~/.git-authors
+fi
+if [ -f "$HOME/.gorc" ] ; then
+  rm -f ~/.gorc
+fi
+if [ -f "$HOME/.pryr" ] ; then
+  rm -f ~/.pryr
+fi
+
+cp $(pwd)/aliases ~/.aliases
+cp $(pwd)/gemrc ~/.gemrc
+cp $(pwd)/gitconfig ~/.gitconfig
+cp $(pwd)/tmux.conf ~/.tmux.conf
+cp $(pwd)/zshrc ~/.zshrc
+cp $(pwd)/gorc ~/.gorc
+cp $(pwd)/pryrc ~/.pryrc
+
+echo 'export PATH=$PATH:/usr/local/go/bin' >> .bashrc
+echo 'export PATH=$PATH:/usr/local/go/bin' >> .zshrc
+
+cp $(pwd)/alias ~/.ralias
+
+cp $(pwd)/nanorc ~/.nanorc
 
 grep -qxF 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' ~/.bashrc || echo 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' >> ~/.bashrc
 
-# echo "if [ -f ~/.ralias ]; then \n\t . ~/.ralias \nfi" >> ~/.bashrc
+grep -qxF 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' ~/.zshrc || echo 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' >> ~/.zshrc
 
-. ~/.bashrc
+# echo "if [ -f ~/.ralias ]; then \n\t . ~/.ralias \nfi" >> ~/.zshrc
+
+
+# Clean up old unnecessary files or symlinks
+rm -f ~/.vimrc ~/.gvimrc ~/.vimrc.bundles; rm -rf ~/.vim
+
+#personal preference
+git config --global --replace-all core.pager cat
+git config --global pager.branch false
+
+# Clone directly into ~/.vim
+git clone https://github.com/reinaldoacosta/vim_dotfiles.git ~/.vim
+
+~/.vim/activate.sh
+
+zsh
