@@ -28,15 +28,18 @@ if ! command -v curl &> /dev/null; then
   DEBIAN_FRONTEND=non_interactive sudo apt install curl -y
 fi
 
-if command -v zsh &> /dev/null; then
+rm -rvf ~/.zshrc.pre-oh-my-zsh ~/.zshrc ~/.zsh_history ~/.shell.pre-oh-my-zsh .oh-my-zsh
+
+if ! command -v zsh &> /dev/null; then
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
-#install go
-curl -OL https://golang.org/dl/go1.16.7.linux-amd64.tar.gz
-sudo tar -C /usr/local -xvf go1.16.7.linux-amd64.tar.gz
-rm go*.gz
-
+if ! command -v go &> /dev/null; then
+  sudo rm -fvr /usr/local/go &> /dev/null
+  curl -OL https://golang.org/dl/go1.16.7.linux-amd64.tar.gz
+  sudo tar -C /usr/local -xvf go1.16.7.linux-amd64.tar.gz
+  rm go*.gz
+fi
 
 if [ -f "$HOME/.aliases" ] ; then
   rm -f ~/.aliases
@@ -64,26 +67,25 @@ if [ -f "$HOME/.pryr" ] ; then
   rm -f ~/.pryr
 fi
 
-cp $(pwd)/aliases ~/.aliases
 cp $(pwd)/gemrc ~/.gemrc
 cp $(pwd)/gitconfig ~/.gitconfig
 cp $(pwd)/tmux.conf ~/.tmux.conf
 cp $(pwd)/zshrc ~/.zshrc
 cp $(pwd)/gorc ~/.gorc
 cp $(pwd)/pryrc ~/.pryrc
-
-echo 'export PATH=$PATH:/usr/local/go/bin' >> .bashrc
-echo 'export PATH=$PATH:/usr/local/go/bin' >> .zshrc
-
 cp $(pwd)/alias ~/.ralias
-
 cp $(pwd)/nanorc ~/.nanorc
+
+if command -v go &> /dev/null; then
+  echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
+  echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.zshrc
+fi
+
 
 grep -qxF 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' ~/.bashrc || echo 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' >> ~/.bashrc
 
 grep -qxF 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' ~/.zshrc || echo 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' >> ~/.zshrc
 
-# echo "if [ -f ~/.ralias ]; then \n\t . ~/.ralias \nfi" >> ~/.zshrc
 
 
 # Clean up old unnecessary files or symlinks
@@ -96,6 +98,11 @@ git config --global pager.branch false
 # Clone directly into ~/.vim
 git clone https://github.com/reinaldoacosta/vim_dotfiles.git ~/.vim
 
+git clone https://github.com/reinaldoacosta/vim-solarized8.git \
+    ~/.vim/pack/themes/opt/solarized8
+
 ~/.vim/activate.sh
 
-zsh
+
+
+echo "Everything should be ready to go"
