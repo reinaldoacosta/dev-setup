@@ -2,7 +2,5 @@
   helper = store
 [pager]
   branch = false
-[core]
-  pager = cat
 [color]
   ui = on
