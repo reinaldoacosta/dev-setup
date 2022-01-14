@@ -74,6 +74,7 @@ cp $(pwd)/zshrc ~/.zshrc
 cp $(pwd)/gorc ~/.gorc
 cp $(pwd)/pryrc ~/.pryrc
 cp $(pwd)/alias ~/.ralias
+cp $(pwd)/alias ~/.btalias
 cp $(pwd)/nanorc ~/.nanorc
 
 if command -v go &> /dev/null; then
@@ -81,6 +82,10 @@ if command -v go &> /dev/null; then
   echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.zshrc
 fi
 
+
+grep -qxF 'if [ -f ~/.btalias ]; then . ~/.btalias; fi' ~/.bashrc || echo 'if [ -f ~/.btalias ]; then . ~/.btalias; fi' >> ~/.bashrc
+
+grep -qxF 'if [ -f ~/.btalias ]; then . ~/.btalias; fi' ~/.zshrc || echo 'if [ -f ~/.btalias ]; then . ~/.btalias; fi' >> ~/.zshrc
 
 grep -qxF 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' ~/.bashrc || echo 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' >> ~/.bashrc
 
