@@ -116,3 +116,19 @@ autoload -U colors && colors
 source ~/.ralias
 
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/home/admin/.local/bin
+
+test -e $HOME/.nvm/nvm.sh && . $HOME/.nvm/nvm.sh
+
+export PATH="/usr/local/share/npm/bin:$PATH"
+export PATH="/usr/local/ruby/bin:$PATH"
+export PATH="$PATH:/usr/local/pear/bin"
+export PATH="$PATH:$HOME/bt/dotfiles/bin"
+export PATH="$PATH:$HOME/bt/system-scripts/bin"
+export PATH="$PATH:/opt/elixir/current/bin"
+export PATH="$PATH:/usr/local/Cellar/python/2.7.2/bin"
+export PATH="$PATH:$HOME/bazel/output"
+export PATH="$PATH:$HOME/.local/bin"  # for pip install --user
+
+alias redshift="bt-psql-redshift"
+alias rs_csv="$HOME/bt/team-data/.venv/bin/python $HOME/bt/team-data/legacy/ops_data/python_scripts/rs_csv.py"
