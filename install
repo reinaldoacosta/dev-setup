@@ -48,11 +48,6 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
   if ! command -v zsh &> /dev/null; then
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   fi
-  
-elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
-    # Do something under 32 bits Windows NT platform
-elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
-    # Do something under 64 bits Windows NT platform
 fi
 
 rm -rvf ~/.zshrc.pre-oh-my-zsh ~/.zshrc ~/.zsh_history ~/.shell.pre-oh-my-zsh .oh-my-zsh
