@@ -1,47 +1,63 @@
 #!/bin/sh
 
-if ! command -v sudo &> /dev/null; then
-  DEBIAN_FRONTEND=non_interactive apt install sudo -y
-fi
+if [ "$(uname)" == "Darwin" ]; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  brew install vim the_silver_searcher tmux go
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+  if ! command -v sudo &> /dev/null; then
+    DEBIAN_FRONTEND=non_interactive apt install sudo -y
+  fi
 
-if ! command -v ag &> /dev/null; then
-  DEBIAN_FRONTEND=non_interactive sudo apt install silversearcher-ag -y
-fi
+  if ! command -v ag &> /dev/null; then
+    DEBIAN_FRONTEND=non_interactive sudo apt install silversearcher-ag -y
+  fi
 
-if ! command -v vim &> /dev/null; then
-  DEBIAN_FRONTEND=non_interactive sudo apt install vim -y
-fi
+  if ! command -v vim &> /dev/null; then
+    DEBIAN_FRONTEND=non_interactive sudo apt install vim -y
+  fi
 
-if ! command -v tmux &> /dev/null; then
-  DEBIAN_FRONTEND=non_interactive sudo apt install tmux -y
-fi
+  if ! command -v tmux &> /dev/null; then
+    DEBIAN_FRONTEND=non_interactive sudo apt install tmux -y
+  fi
 
-if ! command -v zsh &> /dev/null; then
-  DEBIAN_FRONTEND=non_interactive sudo apt install zsh -y
-fi
+  if ! command -v zsh &> /dev/null; then
+    DEBIAN_FRONTEND=non_interactive sudo apt install zsh -y
+  fi
 
-if ! command -v wget &> /dev/null; then
-  DEBIAN_FRONTEND=non_interactive sudo apt install wget -y
-fi
+  if ! command -v wget &> /dev/null; then
+    DEBIAN_FRONTEND=non_interactive sudo apt install wget -y
+  fi
 
-if ! command -v curl &> /dev/null; then
-  DEBIAN_FRONTEND=non_interactive sudo apt install curl -y
+  if ! command -v curl &> /dev/null; then
+    DEBIAN_FRONTEND=non_interactive sudo apt install curl -y
+  fi
+  
+  if ! command -v go &> /dev/null; then
+    sudo rm -fvr /usr/local/go &> /dev/null
+    curl -OL https://golang.org/dl/go1.16.7.linux-amd64.tar.gz
+    sudo tar -C /usr/local -xvf go1.16.7.linux-amd64.tar.gz
+    rm go*.gz
+  fi
+  
+  if command -v go &> /dev/null; then
+    echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
+    echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.zshrc
+  fi
+  
+  if ! command -v zsh &> /dev/null; then
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  fi
+  
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+    # Do something under 32 bits Windows NT platform
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+    # Do something under 64 bits Windows NT platform
 fi
 
 rm -rvf ~/.zshrc.pre-oh-my-zsh ~/.zshrc ~/.zsh_history ~/.shell.pre-oh-my-zsh .oh-my-zsh
 
-if ! command -v zsh &> /dev/null; then
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-fi
-
-if ! command -v go &> /dev/null; then
-  sudo rm -fvr /usr/local/go &> /dev/null
-  curl -OL https://golang.org/dl/go1.16.7.linux-amd64.tar.gz
-  sudo tar -C /usr/local -xvf go1.16.7.linux-amd64.tar.gz
-  rm go*.gz
-fi
-
-if [ -f "$HOME/.aliases" ] ; then
+if [ -f "$HOME/.ralias" ] ; then
   rm -f ~/.aliases
 fi
 
@@ -57,9 +73,6 @@ fi
 if [ -f "$HOME/.zshrc" ] ; then
   rm -f ~/.zshrc
 fi
-if [ -f "$HOME/.git-authors" ] ; then
-  rm -f ~/.git-authors
-fi
 if [ -f "$HOME/.gorc" ] ; then
   rm -f ~/.gorc
 fi
@@ -74,18 +87,8 @@ cp $(pwd)/zshrc ~/.zshrc
 cp $(pwd)/gorc ~/.gorc
 cp $(pwd)/pryrc ~/.pryrc
 cp $(pwd)/alias ~/.ralias
-cp $(pwd)/alias ~/.btalias
 cp $(pwd)/nanorc ~/.nanorc
 
-if command -v go &> /dev/null; then
-  echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
-  echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.zshrc
-fi
-
-
-grep -qxF 'if [ -f ~/.btalias ]; then . ~/.btalias; fi' ~/.bashrc || echo 'if [ -f ~/.btalias ]; then . ~/.btalias; fi' >> ~/.bashrc
-
-grep -qxF 'if [ -f ~/.btalias ]; then . ~/.btalias; fi' ~/.zshrc || echo 'if [ -f ~/.btalias ]; then . ~/.btalias; fi' >> ~/.zshrc
 
 grep -qxF 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' ~/.bashrc || echo 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' >> ~/.bashrc
 
@@ -97,7 +100,6 @@ grep -qxF 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' ~/.zshrc || echo 'if [ -f 
 rm -f ~/.vimrc ~/.gvimrc ~/.vimrc.bundles; rm -rf ~/.vim
 
 #personal preference
-git config --global --replace-all core.pager cat
 git config --global pager.branch false
 
 # Clone directly into ~/.vim
