@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rm -fr ~/.vimrc ~/.gvimrc ~/.vimrc.bundles ~/.vim
+
 if [ "$(uname)" == "Darwin" ]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   brew install vim the_silver_searcher tmux go gh nvm
@@ -83,17 +85,16 @@ cp $(pwd)/gorc ~/.gorc
 cp $(pwd)/pryrc ~/.pryrc
 cp $(pwd)/alias ~/.ralias
 cp $(pwd)/nanorc ~/.nanorc
+cp $(pwd)/tmux-session-connect ~/.tmux-session-connect
 
 
 grep -qxF 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' ~/.bashrc || echo 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' >> ~/.bashrc
 grep -qxF 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' ~/.zshrc || echo 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' >> ~/.zshrc
 
-grep -qxF 'if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then tmux attach -t default || tmux new -s default; fi' ~/.zshrc || echo 'if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then tmux attach -t default || tmux new -s default; fi' >> ~/.zshrc
-grep -qxF 'if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then tmux attach -t default || tmux new -s default; fi' ~/.bashrc || echo 'if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then tmux attach -t default || tmux new -s default; fi' >> ~/.bashrc
-
+grep -qxF 'if [ -f ~/.tmux-session-connect ]; then . ~/.tmux-session-connect; fi' ~/.bashrc || echo 'if [ -f ~/.tmux-session-connect ]; then . ~/.tmux-session-connect; fi' >> ~/.bashrc
+grep -qxF 'if [ -f ~/.tmux-session-connect ]; then . ~/.tmux-session-connect; fi' ~/.zshrc || echo 'if [ -f ~/.tmux-session-connect ]; then . ~/.tmux-session-connect; fi' >> ~/.zshrc
 
 # Clean up old unnecessary files or symlinks
-rm -f ~/.vimrc ~/.gvimrc ~/.vimrc.bundles; rm -rf ~/.vim
 
 #personal preference
 git config --global pager.branch false
