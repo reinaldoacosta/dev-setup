@@ -86,7 +86,7 @@ cp $(pwd)/gorc ~/.gorc
 cp $(pwd)/pryrc ~/.pryrc
 cp $(pwd)/alias ~/.ralias
 cp $(pwd)/nanorc ~/.nanorc
-cp $(pwd)/tmux-session-connect ~/.tmux-session-connect
+#cp $(pwd)/tmux-session-connect ~/.tmux-session-connect
 
 
 grep -qxF 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' ~/.bashrc || echo 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' >> ~/.bashrc
@@ -95,7 +95,9 @@ grep -qxF 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' ~/.zshrc || echo 'if [ -f 
 # grep -qxF 'if [ -f ~/.tmux-session-connect ]; then . ~/.tmux-session-connect; fi' ~/.bashrc || echo 'if [ -f ~/.tmux-session-connect ]; then . ~/.tmux-session-connect; fi' >> ~/.bashrc
 # grep -qxF 'if [ -f ~/.tmux-session-connect ]; then . ~/.tmux-session-connect; fi' ~/.zshrc || echo 'if [ -f ~/.tmux-session-connect ]; then . ~/.tmux-session-connect; fi' >> ~/.zshrc
 
+sudo rm -f /usr/local/bin/consola /usr/local/bin/dmem
 sudo cp $(pwd)/tmux-session-connect /usr/local/bin/consola
+sudo cp $(pwd)/dmem /usr/local/bin/dmem
 
 # Clean up old unnecessary files or symlinks
 
