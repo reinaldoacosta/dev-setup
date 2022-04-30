@@ -114,6 +114,6 @@ git clone https://github.com/reinaldoacosta/vim-solarized8.git \
 
 ~/.vim/activate.sh
 
-
+sudo chsh -s (which zsh)
 
 echo "Everything should be ready to go"
