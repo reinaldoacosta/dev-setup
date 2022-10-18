@@ -108,9 +108,9 @@ git config --global user.email "<>"
 
 # Clone directly into ~/.vim
 git clone https://github.com/reinaldoacosta/vim_dotfiles.git ~/.vim
-
-git clone https://github.com/reinaldoacosta/vim-solarized8.git \
-    ~/.vim/pack/themes/opt/solarized8
+git clone https://github.com/reinaldoacosta/vim-solarized8.git ~/.vim/pack/themes/opt/solarized8
+# Install github copilot
+git clone https://github.com/github/copilot.vim.git ~/.vim/pack/github/start/copilot.vim
 
 ~/.vim/activate.sh
 
