@@ -58,7 +58,7 @@ alias tns="tmux new -s "
 alias tdr="tmux a -t "
 #fix apt issue with the WSL microsoft retardation
 alias fixwslapt="echo 'nameserver 8.8.8.8' | sudo tee /etc/resolv.conf > /dev/null"
-
+alias asd="nvim ."
 
 #add monero
 PATH=$PATH:/opt/monero
