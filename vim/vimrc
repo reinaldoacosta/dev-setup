@@ -26,7 +26,7 @@ endif
 
 " ========= Options ========
 
-color zellner
+colorscheme solarized8_flat
 set background=light
 compiler ruby
 syntax on
