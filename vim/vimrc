@@ -645,3 +645,7 @@ imap <M-,> <Plug>(copilot-previous)
 nnoremap <C-s> :Copilot panel<CR>
 " map ctrl+q to the ":qa" command
 nnoremap <C-q> :qa<CR>
+" automatically close NERDTree when opening a file
+let g:NERDTreeQuitOnOpen = 1
+" toggle NERDTree with ctrl+n
+map <C-n> :NERDTreeToggle<CR>
