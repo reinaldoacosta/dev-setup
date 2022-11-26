@@ -9,10 +9,6 @@ alias gst='git status '
 alias gdf='git diff --name-only'
 alias gdiff='git diff'
 alias docs='cd ~/Documents'
-alias fixsound='sudo alsa force-reload'
-alias ns='screen -S '
-alias dr='screen -dr '
-alias serverpc="ssh root@serverpc -p 222"
 alias gom='cd ~/Documents/moo/m'
 alias got='cd ~/Documents/services'
 alias update="sudo apt update"
@@ -20,23 +16,16 @@ alias upgrade="sudo apt upgrade -y"
 alias list="apt list --upgradable"
 alias autoremove="sudo apt autoremove --purge -y"
 alias py="python"
-#alias python='python3'
-#alias pip="pip3"
+alias python='python3'
+alias pip="pip3"
 alias root="sudo -s -E"
 alias lap="ssh reinaldo@rog"
 alias checktor='curl --socks5 127.0.0.1:9050 http://checkip.amazonaws.com/'
 alias tor="sudo -u debian-tor tor"
 alias edithost='sudo nano /etc/hosts'
-alias droplet="ssh root@161.35.196.147"
 alias par="php artisan "
-alias fixsound='sudo alsa force-reload'
-alias ns='screen -S '
-alias dr='screen -dr '
 alias godev="cd ~/Documents/dev"
-alias avisar='play /usr/share/sounds/ubuntu/notifications/Mallet.ogg -q -V1'
 alias fixsound='sudo alsa force-reload'
-alias ns='screen -S '
-alias dr='screen -dr '
 alias avisar='play /usr/share/sounds/ubuntu/notifications/Mallet.ogg -q -V1'
 alias dcud="docker-compose up -d"
 alias dcub="docker-compose up -d --build"
@@ -47,15 +36,12 @@ alias dcr="docker-compose restart"
 alias dps="docker ps"
 alias deti="docker exec -ti "
 alias dstat="docker stats"
-#Add laravel to path
 PATH=$PATH:$HOME/.config/composer/vendor/bin
 alias cd1="cd .."
 alias cd2="cd ../.."
 alias cd3="cd ../../.."
 alias cd4="cd ../../../.."
 alias cd5="cd ../../../../.."
-alias tns="tmux new -s "
-alias tdr="tmux a -t "
 #fix apt issue with the WSL microsoft retardation
 alias fixwslapt="echo 'nameserver 8.8.8.8' | sudo tee /etc/resolv.conf > /dev/null"
 alias asd="nvim ."
@@ -72,3 +58,17 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+function consola() {
+  WHOAMI=$(whoami)
+  if tmux has-session -t $WHOAMI 2>/dev/null; then
+      tmux -2 attach-session -t $WHOAMI
+  else
+      tmux -2 new-session -s $WHOAMI
+  fi
+  if [ "$TERM" == "tmux-256color" ]; then clear; fi
+}
+
+function dmem() {
+  docker stats --no-stream --format 'table {{.MemUsage}}' | sed 's/\.\([0-9]*\)GiB/\1MiB/g' | sed 's/[A-Za-z]*//g' | awk '{sum += $1} END {print sum "MB"}'
+}

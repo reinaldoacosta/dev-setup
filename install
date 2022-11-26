@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -fr ~/.vimrc ~/.gvimrc ~/.vimrc.bundles ~/.vim
+rm -rfv ~/.vimrc ~/.gvimrc ~/.vimrc.bundles ~/.vim ~/.zshrc.pre-oh-my-zsh ~/.zshrc ~/.zsh_history ~/.shell.pre-oh-my-zsh .oh-my-zsh
 
 if [ "$(uname)" == "Darwin" ]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
@@ -53,7 +53,6 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
   fi
 fi
 
-rm -rvf ~/.zshrc.pre-oh-my-zsh ~/.zshrc ~/.zsh_history ~/.shell.pre-oh-my-zsh .oh-my-zsh
 
 if [ -f "$HOME/.ralias" ] ; then
   rm -f ~/.aliases
@@ -95,25 +94,22 @@ grep -qxF 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' ~/.zshrc || echo 'if [ -f 
 # grep -qxF 'if [ -f ~/.tmux-session-connect ]; then . ~/.tmux-session-connect; fi' ~/.bashrc || echo 'if [ -f ~/.tmux-session-connect ]; then . ~/.tmux-session-connect; fi' >> ~/.bashrc
 # grep -qxF 'if [ -f ~/.tmux-session-connect ]; then . ~/.tmux-session-connect; fi' ~/.zshrc || echo 'if [ -f ~/.tmux-session-connect ]; then . ~/.tmux-session-connect; fi' >> ~/.zshrc
 
-sudo rm -f /usr/local/bin/consola /usr/local/bin/dmem
-sudo cp $(pwd)/tmux-session-connect /usr/local/bin/consola
-sudo cp $(pwd)/dmem /usr/local/bin/dmem
-
 # Clean up old unnecessary files or symlinks
 
 #personal preference
 git config --global pager.branch false
-git config --global user.name reinaldo
-git config --global user.email "<>"
+git config --global user.name Reinaldo
+git config --global user.email "12644557+reinaldoacosta@users.noreply.github.com"
 
 # Clone directly into ~/.vim
-git clone https://github.com/reinaldoacosta/vim_dotfiles.git ~/.vim
+cp -r ./vim ~/.vim
 git clone https://github.com/reinaldoacosta/vim-solarized8.git ~/.vim/pack/themes/opt/solarized8
 # Install github copilot
 git clone https://github.com/github/copilot.vim.git ~/.vim/pack/github/start/copilot.vim
 
 ~/.vim/activate.sh
 
-sudo chsh -s (which zsh)
-
-echo "Everything should be ready to go"
+# print "Done!" in green
+echo -e "\033[0;32mDone!\033[0m"
+# print message in yellow
+echo -e "\033[0;33mPlease restart your terminal and do not forget to log into Github Copilot in NeoVim.\033[0m"
