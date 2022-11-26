@@ -641,4 +641,7 @@ inoremap <expr> <C-p> (pumvisible() ? "\<C-p>" : "\<C-p>")
 " neovim copilot suggestions with alt+, and alt+. (latinamerican spanish keyboard)
 imap <M-.> <Plug>(copilot-next)
 imap <M-,> <Plug>(copilot-previous)
-
+" map ctrl+s to the vim command ":Copilot panel"
+nnoremap <C-s> :Copilot panel<CR>
+" map ctrl+q to the ":qa" command
+nnoremap <C-q> :qa<CR>
