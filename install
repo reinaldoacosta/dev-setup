@@ -109,7 +109,10 @@ git clone https://github.com/github/copilot.vim.git ~/.vim/pack/github/start/cop
 
 ~/.vim/activate.sh
 
-# print "Done!" in green
-echo -e "\033[0;32mDone!\033[0m"
-# print message in yellow
+sed -i 's/colorscheme default/colorscheme github_light_default/g' ~/.vim/vimrc
+#download fonts and install them in the system
+#the font URL is https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/AnonymousPro/complete/Anonymice%20Nerd%20Font%20Complete%20Mono.ttf
+
+echo -e "\033[0;31mDownload the following font: https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/AnonymousPro/complete/Anonymice%20Nerd%20Font%20Complete%20Mono.ttf and install it in the system.\033[0m"
 echo -e "\033[0;33mPlease restart your terminal and do not forget to log into Github Copilot in NeoVim.\033[0m"
+echo -e "\033[0;32mDone!\033[0m"

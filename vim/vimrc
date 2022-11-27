@@ -26,7 +26,8 @@ endif
 
 " ========= Options ========
 
-colorscheme solarized8_flat
+colorscheme default
+set encoding=UTF-8
 set background=light
 compiler ruby
 syntax on
