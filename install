@@ -109,7 +109,7 @@ git clone https://github.com/github/copilot.vim.git ~/.vim/pack/github/start/cop
 
 ~/.vim/activate.sh
 
-sed -i 's/colorscheme default/colorscheme github_light_default/g' ~/.vim/vimrc
+sed -i 's/colorscheme default/colorscheme github_light/g' ~/.vim/vimrc
 #download fonts and install them in the system
 #the font URL is https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/AnonymousPro/complete/Anonymice%20Nerd%20Font%20Complete%20Mono.ttf
 

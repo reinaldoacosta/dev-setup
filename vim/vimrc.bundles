@@ -105,7 +105,7 @@ endif
 
 Plug 'jiangmiao/auto-pairs'
 Plug '907th/vim-auto-save'
-Plug 'projekt0n/github-nvim-theme', { 'branch': 'main' }
+Plug 'projekt0n/github-nvim-theme', { 'branch': 'main', 'commit': '54ff75c40cd2cb512dc9cf8030dda92d30e25205' }
 Plug 'olimorris/onedarkpro.nvim', { 'branch': 'main' }
 Plug 'ryanoasis/vim-devicons'
 
