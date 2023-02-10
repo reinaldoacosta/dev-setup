@@ -4,7 +4,7 @@ rm -rfv ~/.vimrc ~/.gvimrc ~/.vimrc.bundles ~/.vim ~/.zshrc.pre-oh-my-zsh ~/.zsh
 
 if [ "$(uname)" == "Darwin" ]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-  brew install vim the_silver_searcher tmux go gh nvm
+  brew install vim the_silver_searcher tmux go gh nvm neovim
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
   if ! command -v sudo &> /dev/null; then
@@ -17,6 +17,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
   if ! command -v vim &> /dev/null; then
     DEBIAN_FRONTEND=non_interactive sudo apt install vim -y
+  fi
+
+  if ! command -v nvim &> /dev/null; then
+    DEBIAN_FRONTEND=non_interactive sudo apt install neovim -y
   fi
 
   if ! command -v tmux &> /dev/null; then
