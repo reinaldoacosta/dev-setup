@@ -1,19 +1,19 @@
-name: workflow_01
+name: remote trigger
 on:
   workflow_dispatch:
      inputs:
-      workflow_02:
-        description: 'ًWorkflow 2 which will be triggered'
+      ubuntu_trigger:
+        description: 'ًUbuntu job which will be triggered'
         required: true
-        default: 'workflow_02'
+        default: 'ubuntu_trigger'
 
-      workflow2_github_account:
+      ubuntu_trigger_github_account:
         description: 'GitHub Account Owner'
         required: true
         default: 'reinaldoacosta'
 
-      workflow2_repo_github:
-        description: 'repo-name'
+      ubuntu_trigger_repo_github:
+        description: 'remote reinaldo ubuntu docker image'
         required: true
         default: 'ubuntu' 
 
@@ -23,7 +23,7 @@ jobs:
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Test
+      - name: Ubuntu Remote trigger
         run: |
           curl -X POST https://api.github.com/repos/reinaldoacosta/ubuntu/dispatches \
           -H 'Accept: application/vnd.github.everest-preview+json' \
