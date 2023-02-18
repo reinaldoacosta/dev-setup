@@ -650,3 +650,5 @@ nnoremap <C-q> :qa<CR>
 let g:NERDTreeQuitOnOpen = 1
 " toggle NERDTree with ctrl+n
 map <C-n> :NERDTreeToggle<CR>
+" map scroll up to ctrl+w
+nnoremap <C-w> <C-u>
