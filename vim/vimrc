@@ -650,3 +650,9 @@ nnoremap <C-q> :qa<CR>
 let g:NERDTreeQuitOnOpen = 1
 " toggle NERDTree with ctrl+n
 map <C-n> :NERDTreeToggle<CR>
+"map change to previous tab by pressing 1
+nnoremap 1 :tabprevious<CR>
+"map change to next tab by pressing 2
+nnoremap 2 :tabnext<CR>
+" map t to new tab
+nnoremap t :tabnew<CR>
