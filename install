@@ -42,8 +42,8 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
   if ! command -v go &> /dev/null; then
     echo "Installing go..."
     sudo rm -fvr /usr/local/go &> /dev/null
-    curl -OL https://golang.org/dl/go1.16.7.linux-amd64.tar.gz
-    sudo tar -C /usr/local -xvf go1.16.7.linux-amd64.tar.gz
+    curl -OL https://go.dev/dl/go1.20.2.linux-amd64.tar.gz
+    sudo tar -C /usr/local -xvf go1.20.2.linux-amd64.tar.gz
     rm go*.gz
   fi
 
