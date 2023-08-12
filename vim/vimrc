@@ -645,14 +645,16 @@ imap <M-,> <Plug>(copilot-previous)
 " map ctrl+s to the vim command ":Copilot panel"
 nnoremap <C-s> :Copilot panel<CR>
 " map ctrl+q to the ":qa" command
-nnoremap <C-q> :qa<CR>
+nnoremap <F11> :qa<CR>
 " automatically close NERDTree when opening a file
-let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeQuitOnOpen = 0
 " toggle NERDTree with ctrl+n
-map <C-n> :NERDTreeToggle<CR>
+map <M-q> :NERDTreeToggle<CR>
 "map change to previous tab by pressing 1
 nnoremap 1 :tabprevious<CR>
 "map change to next tab by pressing 2
 nnoremap 2 :tabnext<CR>
 " map t to new tab
 nnoremap t :tabnew<CR>
+" toggle line wrap with ctrl+q
+nnoremap <C-q> :set wrap!<CR>
