@@ -658,3 +658,5 @@ nnoremap 2 :tabnext<CR>
 nnoremap t :tabnew<CR>
 " toggle line wrap with ctrl+q
 nnoremap <C-q> :set wrap!<CR>
+" when in insert mode pressing the key ¿ will insert the character =
+imap ¿ =
