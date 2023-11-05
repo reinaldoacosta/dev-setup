@@ -649,7 +649,7 @@ nnoremap <F11> :qa!<CR>
 "map F12 to the ":q" command
 nnoremap <F12> :q<CR>
 " automatically close NERDTree when opening a file
-let g:NERDTreeQuitOnOpen = 0
+let g:NERDTreeQuitOnOpen = 1
 " toggle NERDTree with ctrl+n
 map <M-q> :NERDTreeToggle<CR>
 "map change to previous tab by pressing 1
