@@ -42,12 +42,9 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
   if ! command -v go &> /dev/null; then
     echo "Installing go..."
     sudo rm -fvr /usr/local/go &> /dev/null
-    curl -OL https://go.dev/dl/go1.21.4.linux-amd64.tar.gz
-    sudo tar -C /usr/local -xvf go1.21.4.linux-amd64.tar.gz
+    curl -OL https://go.dev/dl/go1.21.6.linux-amd64.tar.gz
+    sudo tar -C /usr/local -xvf go1.21.6.linux-amd64.tar.gz
     rm go*.gz
-  fi
-
-  if command -v go &> /dev/null; then
     echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
     echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.zshrc
   fi
