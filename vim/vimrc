@@ -664,3 +664,15 @@ nnoremap <C-q> :set wrap!<CR>
 imap ¿ =
 imap <M-p> ()<Esc>i
 let g:AutoPairsShortcutToggle = '<F9>'
+
+" alt+up and alt+down to move lines up and down
+nnoremap <M-Down> :m .+1<CR>==
+nnoremap <M-Up> :m .-2<CR>==
+
+" ctrl+up and ctrl+down splits horizontally by 50%
+" ctrl+left and ctrl+right splits vertically by 50%
+
+nnoremap <C-Up> :split<CR><C-w>j<CR><C-w>K<CR>
+nnoremap <C-Down> :split<CR><C-w>k<CR><C-w>J<CR>
+nnoremap <C-Left> :vsplit<CR><C-w>l<CR><C-w>H<CR>
+nnoremap <C-Right> :vsplit<CR><C-w>h<CR><C-w>L<CR>
