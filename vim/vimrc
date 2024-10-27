@@ -26,7 +26,7 @@ endif
 
 " ========= Options ========
 
-colorscheme default
+colorscheme vscode
 set encoding=UTF-8
 set background=light
 compiler ruby
@@ -676,3 +676,4 @@ nnoremap <C-Up> :split<CR><C-w>j<CR><C-w>K<CR>
 nnoremap <C-Down> :split<CR><C-w>k<CR><C-w>J<CR>
 nnoremap <C-Left> :vsplit<CR><C-w>l<CR><C-w>H<CR>
 nnoremap <C-Right> :vsplit<CR><C-w>h<CR><C-w>L<CR>
+nnoremap <C-t> :NERDTreeFind<CR>

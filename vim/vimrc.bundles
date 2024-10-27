@@ -108,5 +108,6 @@ Plug '907th/vim-auto-save'
 Plug 'olimorris/onedarkpro.nvim', { 'branch': 'main' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'ntk148v/komau.vim'
+Plug 'Mofiqul/vscode.nvim'
 
 call plug#end()

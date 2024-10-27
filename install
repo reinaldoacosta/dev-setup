@@ -18,10 +18,6 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     DEBIAN_FRONTEND=non_interactive sudo apt install vim -y
   fi
 
-  if ! command -v nvim &> /dev/null; then
-    DEBIAN_FRONTEND=non_interactive sudo apt install neovim -y
-  fi
-
   if ! command -v tmux &> /dev/null; then
     DEBIAN_FRONTEND=non_interactive sudo apt install tmux -y
   fi
@@ -91,6 +87,10 @@ grep -qxF 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' ~/.zshrc || echo 'if [ -f 
 git config --global pager.branch false
 git config --global user.name Reinaldo
 git config --global user.email "12644557+reinaldoacosta@users.noreply.github.com"
+git config --global core.editor vim
+git config --global pull.rebase true
+#set autocrlf to false
+git config --global core.autocrlf false
 
 # Clone directly into ~/.vim
 cp -r ./vim ~/.vim
@@ -99,7 +99,7 @@ git clone https://github.com/github/copilot.vim.git ~/.vim/pack/github/start/cop
 
 ~/.vim/activate.sh
 
-sed -i 's/colorscheme default/colorscheme komau/g' ~/.vim/vimrc
+#sed -i 's/colorscheme default/colorscheme komau/g' ~/.vim/vimrc
 #download fonts and install them in the system
 #the font URL is https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/AnonymousPro/complete/Anonymice%20Nerd%20Font%20Complete%20Mono.ttf
 
