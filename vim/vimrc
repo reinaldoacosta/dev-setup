@@ -656,8 +656,6 @@ map <M-q> :NERDTreeToggle<CR>
 nnoremap 1 :tabprevious<CR>
 "map change to next tab by pressing 2
 nnoremap 2 :tabnext<CR>
-" map t to new tab
-nnoremap t :tabnew<CR>
 " toggle line wrap with ctrl+q
 nnoremap <C-q> :set wrap!<CR>
 " when in insert mode pressing the key ¿ will insert the character =
@@ -676,4 +674,9 @@ nnoremap <C-Up> :split<CR><C-w>j<CR><C-w>K<CR>
 nnoremap <C-Down> :split<CR><C-w>k<CR><C-w>J<CR>
 nnoremap <C-Left> :vsplit<CR><C-w>l<CR><C-w>H<CR>
 nnoremap <C-Right> :vsplit<CR><C-w>h<CR><C-w>L<CR>
-nnoremap <C-t> :NERDTreeFind<CR>
+
+
+" map t to the ":NERDTreeFind" command
+nnoremap t :NERDTreeFind<CR>
+" map ctrl+n to the new tab command
+nnoremap <C-n> :tabnew<CR>
