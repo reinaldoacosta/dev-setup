@@ -26,7 +26,7 @@ endif
 
 " ========= Options ========
 
-colorscheme vscode
+colorscheme default
 set encoding=UTF-8
 set background=light
 compiler ruby
