@@ -625,7 +625,8 @@ end
 
 "add binding for Ag
 let g:ackprg = 'ag --vimgrep'
-
+" bind :Ag to ctrl+f and press enter to search
+nnoremap <C-f> :Ag<CR>
 " Define some single Blade directives. This variable is used for highlighting only.
 let g:blade_custom_directives = ['datetime', 'javascript']
 
