@@ -110,4 +110,12 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'ntk148v/komau.vim'
 Plug 'Mofiqul/vscode.nvim'
 
+Plug 'nvim-lua/plenary.nvim'
+Plug 'CopilotC-Nvim/CopilotChat.nvim'
+
+
 call plug#end()
+
+lua << EOF
+require("CopilotChat").setup()
+EOF
