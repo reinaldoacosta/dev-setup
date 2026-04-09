@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -rfv ~/.vimrc ~/.gvimrc ~/.vimrc.bundles ~/.vim ~/.zshrc.pre-oh-my-zsh ~/.zshrc ~/.zsh_history ~/.shell.pre-oh-my-zsh .oh-my-zsh
+rm -rf ~/.vimrc ~/.gvimrc ~/.vimrc.bundles ~/.vim ~/.zshrc.pre-oh-my-zsh ~/.zshrc ~/.zsh_history ~/.shell.pre-oh-my-zsh .oh-my-zsh ~/.config/nvim
 
 if [ "$(uname)" == "Darwin" ]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
@@ -37,6 +37,21 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
   if ! command -v go &> /dev/null; then
     echo "Installing go..."
     sudo snap install go --classic
+  fi
+
+  #if ripgrep is not installed, install it
+  if ! command -v rg &> /dev/null; then
+    echo "Installing ripgrep..."
+    curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep_14.1.1-1_amd64.deb
+    sudo dpkg -i ripgrep_14.1.1-1_amd64.deb
+    rm ripgrep_14.1.1-1_amd64.deb
+  fi
+
+  # if fd is not installed, install it
+  if ! command -v fd &> /dev/null; then
+    echo "Installing fd..."
+    sudo apt install fd-find -y
+    sudo ln -s $(which fdfind) /usr/local/bin/fd
   fi
 fi
 
@@ -95,9 +110,23 @@ git config --global core.autocrlf false
 # Clone directly into ~/.vim
 cp -r ./vim ~/.vim
 # Install github copilot
-git clone https://github.com/github/copilot.vim.git ~/.vim/pack/github/start/copilot.vim
+# git clone https://github.com/github/copilot.vim.git ~/.vim/pack/github/start/copilot.vim
 
 ~/.vim/activate.sh
+
+# Copy the init.vim file to the nvim config directory but first delete it if it already exists
+mkdir -p ~/.config/nvim
+cp ./init.vim ~/.config/nvim/init.vim
+
+
+# Create the directory using your specific user ID (usually 1000)
+sudo mkdir -p /run/user/$(id -u)
+
+# Give yourself ownership of it
+sudo chown -R $USER:$USER /run/user/$(id -u)
+
+# Ensure it has the correct write permissions
+sudo chmod 0700 /run/user/$(id -u)
 
 sed -i 's/colorscheme default/colorscheme vscode/g' ~/.vim/vimrc
 #download fonts and install them in the system
