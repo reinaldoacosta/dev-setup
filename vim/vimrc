@@ -26,7 +26,7 @@ endif
 
 " ========= Options ========
 
-colorscheme default
+colorscheme vscode
 set encoding=UTF-8
 set background=light
 compiler ruby
@@ -681,3 +681,5 @@ nnoremap <C-Right> :vsplit<CR><C-w>h<CR><C-w>L<CR>
 nnoremap t :NERDTreeFind<CR>
 " map ctrl+n to the new tab command
 nnoremap <C-n> :tabnew<CR>
+
+

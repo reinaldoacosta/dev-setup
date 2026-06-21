@@ -102,7 +102,7 @@ grep -qxF 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' ~/.zshrc || echo 'if [ -f 
 git config --global pager.branch false
 git config --global user.name Reinaldo
 git config --global user.email "12644557+reinaldoacosta@users.noreply.github.com"
-git config --global core.editor vim
+git config --global core.editor nvim
 git config --global pull.rebase true
 #set autocrlf to false
 git config --global core.autocrlf false
@@ -114,9 +114,9 @@ cp -r ./vim ~/.vim
 
 ~/.vim/activate.sh
 
-# Copy the init.vim file to the nvim config directory but first delete it if it already exists
+# Copy the init.lua file to the nvim config directory but first delete it if it already exists
 mkdir -p ~/.config/nvim
-cp ./init.vim ~/.config/nvim/init.vim
+cp ./init.lua ~/.config/nvim/init.lua
 
 
 # Create the directory using your specific user ID (usually 1000)
