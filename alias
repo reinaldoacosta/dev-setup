@@ -13,10 +13,17 @@ alias gdiff='git diff'
 alias docs='cd ~/Documents'
 alias gom='cd ~/Documents/moo/m'
 alias got='cd ~/Documents/services'
-alias update="sudo apt update"
-alias upgrade="sudo apt upgrade -y"
-alias list="apt list --upgradable"
-alias autoremove="sudo apt autoremove --purge -y"
+if command -v dnf &> /dev/null; then
+  alias update="sudo dnf check-update"
+  alias upgrade="sudo dnf upgrade -y"
+  alias list="dnf list --upgrades"
+  alias autoremove="sudo dnf autoremove -y"
+elif command -v apt &> /dev/null; then
+  alias update="sudo apt update"
+  alias upgrade="sudo apt upgrade -y"
+  alias list="apt list --upgradable"
+  alias autoremove="sudo apt autoremove --purge -y"
+fi
 alias py="python"
 alias python='python3'
 alias pip="pip3"

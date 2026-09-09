@@ -1,57 +1,145 @@
 #!/bin/bash
 
-rm -rf ~/.vimrc ~/.gvimrc ~/.vimrc.bundles ~/.vim ~/.zshrc.pre-oh-my-zsh ~/.zshrc ~/.zsh_history ~/.shell.pre-oh-my-zsh .oh-my-zsh ~/.config/nvim
+rm -rf ~/.vimrc ~/.gvimrc ~/.vimrc.bundles ~/.vim ~/.zshrc.pre-oh-my-zsh ~/.zshrc ~/.zsh_history ~/.shell.pre-oh-my-zsh ~/.oh-my-zsh ~/.config/nvim
+
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if [ "$(uname)" == "Darwin" ]; then
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-  brew install vim the_silver_searcher tmux go gh nvm neovim
+  if ! command -v brew &> /dev/null; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  fi
+  brew install vim the_silver_searcher tmux go gh nvm neovim ripgrep fd
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-  if ! command -v sudo &> /dev/null; then
-    DEBIAN_FRONTEND=non_interactive apt install sudo -y
+  IS_FEDORA=false
+  if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    if [ "${ID:-}" = "fedora" ] || [[ "${ID_LIKE:-}" =~ (fedora|rhel) ]]; then
+      IS_FEDORA=true
+    fi
+  elif command -v dnf &> /dev/null; then
+    IS_FEDORA=true
   fi
 
-  if ! command -v ag &> /dev/null; then
-    DEBIAN_FRONTEND=non_interactive sudo apt install silversearcher-ag -y
-  fi
+  if [ "$IS_FEDORA" = true ] || command -v dnf &> /dev/null; then
+    if ! command -v sudo &> /dev/null; then
+      dnf install -y sudo
+    fi
 
-  if ! command -v vim &> /dev/null; then
-    DEBIAN_FRONTEND=non_interactive sudo apt install vim -y
-  fi
+    if ! command -v ag &> /dev/null; then
+      sudo dnf install -y the_silver_searcher
+    fi
 
-  if ! command -v tmux &> /dev/null; then
-    DEBIAN_FRONTEND=non_interactive sudo apt install tmux -y
-  fi
+    if ! command -v vim &> /dev/null; then
+      sudo dnf install -y vim-enhanced
+    fi
 
-  if ! command -v zsh &> /dev/null; then
-    DEBIAN_FRONTEND=non_interactive sudo apt install zsh -y
-  fi
+    if ! command -v nvim &> /dev/null; then
+      sudo dnf install -y neovim
+    fi
 
-  if ! command -v wget &> /dev/null; then
-    DEBIAN_FRONTEND=non_interactive sudo apt install wget -y
-  fi
+    if ! command -v tmux &> /dev/null; then
+      sudo dnf install -y tmux
+    fi
 
-  if ! command -v curl &> /dev/null; then
-    DEBIAN_FRONTEND=non_interactive sudo apt install curl -y
-  fi
+    if ! command -v zsh &> /dev/null; then
+      sudo dnf install -y zsh
+    fi
 
-  if ! command -v go &> /dev/null; then
-    echo "Installing go..."
-    sudo snap install go --classic
-  fi
+    if ! command -v wget &> /dev/null; then
+      sudo dnf install -y wget
+    fi
 
-  #if ripgrep is not installed, install it
-  if ! command -v rg &> /dev/null; then
-    echo "Installing ripgrep..."
-    curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep_14.1.1-1_amd64.deb
-    sudo dpkg -i ripgrep_14.1.1-1_amd64.deb
-    rm ripgrep_14.1.1-1_amd64.deb
-  fi
+    if ! command -v curl &> /dev/null; then
+      sudo dnf install -y curl
+    fi
 
-  # if fd is not installed, install it
-  if ! command -v fd &> /dev/null; then
-    echo "Installing fd..."
-    sudo apt install fd-find -y
-    sudo ln -s $(which fdfind) /usr/local/bin/fd
+    if ! command -v git &> /dev/null; then
+      sudo dnf install -y git
+    fi
+
+    if ! command -v go &> /dev/null; then
+      echo "Installing go..."
+      sudo dnf install -y golang
+    fi
+
+    # if ripgrep is not installed, install it
+    if ! command -v rg &> /dev/null; then
+      echo "Installing ripgrep..."
+      sudo dnf install -y ripgrep
+    fi
+
+    # if fd is not installed, install it
+    if ! command -v fd &> /dev/null; then
+      echo "Installing fd..."
+      sudo dnf install -y fd-find
+      if ! command -v fd &> /dev/null && command -v fdfind &> /dev/null; then
+        sudo ln -sf "$(which fdfind)" /usr/local/bin/fd
+      fi
+    fi
+  else
+    if ! command -v sudo &> /dev/null; then
+      DEBIAN_FRONTEND=noninteractive apt install sudo -y
+    fi
+
+    if ! command -v ag &> /dev/null; then
+      DEBIAN_FRONTEND=noninteractive sudo apt install silversearcher-ag -y
+    fi
+
+    if ! command -v vim &> /dev/null; then
+      DEBIAN_FRONTEND=noninteractive sudo apt install vim -y
+    fi
+
+    if ! command -v nvim &> /dev/null; then
+      DEBIAN_FRONTEND=noninteractive sudo apt install neovim -y
+    fi
+
+    if ! command -v tmux &> /dev/null; then
+      DEBIAN_FRONTEND=noninteractive sudo apt install tmux -y
+    fi
+
+    if ! command -v zsh &> /dev/null; then
+      DEBIAN_FRONTEND=noninteractive sudo apt install zsh -y
+    fi
+
+    if ! command -v wget &> /dev/null; then
+      DEBIAN_FRONTEND=noninteractive sudo apt install wget -y
+    fi
+
+    if ! command -v curl &> /dev/null; then
+      DEBIAN_FRONTEND=noninteractive sudo apt install curl -y
+    fi
+
+    if ! command -v git &> /dev/null; then
+      DEBIAN_FRONTEND=noninteractive sudo apt install git -y
+    fi
+
+    if ! command -v go &> /dev/null; then
+      echo "Installing go..."
+      if command -v snap &> /dev/null; then
+        sudo snap install go --classic
+      else
+        DEBIAN_FRONTEND=noninteractive sudo apt install golang -y
+      fi
+    fi
+
+    # if ripgrep is not installed, install it
+    if ! command -v rg &> /dev/null; then
+      echo "Installing ripgrep..."
+      if ! DEBIAN_FRONTEND=noninteractive sudo apt install ripgrep -y 2>/dev/null; then
+        curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep_14.1.1-1_amd64.deb
+        sudo dpkg -i ripgrep_14.1.1-1_amd64.deb
+        rm -f ripgrep_14.1.1-1_amd64.deb
+      fi
+    fi
+
+    # if fd is not installed, install it
+    if ! command -v fd &> /dev/null; then
+      echo "Installing fd..."
+      sudo apt install fd-find -y
+      if command -v fdfind &> /dev/null; then
+        sudo ln -sf "$(which fdfind)" /usr/local/bin/fd
+      fi
+    fi
   fi
 fi
 
@@ -79,15 +167,15 @@ if [ -f "$HOME/.pryr" ] ; then
   rm -f ~/.pryr
 fi
 
-cp $(pwd)/gemrc ~/.gemrc
-cp $(pwd)/gitconfig ~/.gitconfig
-cp $(pwd)/tmux.conf ~/.tmux.conf
-cp $(pwd)/zshrc ~/.zshrc
-cp $(pwd)/gorc ~/.gorc
-cp $(pwd)/pryrc ~/.pryrc
-cp $(pwd)/alias ~/.ralias
-cp $(pwd)/nanorc ~/.nanorc
-#cp $(pwd)/tmux-session-connect ~/.tmux-session-connect
+cp "$DIR/gemrc" ~/.gemrc
+cp "$DIR/gitconfig" ~/.gitconfig
+cp "$DIR/tmux.conf" ~/.tmux.conf
+cp "$DIR/zshrc" ~/.zshrc
+cp "$DIR/gorc" ~/.gorc
+cp "$DIR/pryrc" ~/.pryrc
+cp "$DIR/alias" ~/.ralias
+cp "$DIR/nanorc" ~/.nanorc
+#cp "$DIR/tmux-session-connect" ~/.tmux-session-connect
 
 
 grep -qxF 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' ~/.bashrc || echo 'if [ -f ~/.ralias ]; then . ~/.ralias; fi' >> ~/.bashrc
@@ -108,7 +196,7 @@ git config --global pull.rebase true
 git config --global core.autocrlf false
 
 # Clone directly into ~/.vim
-cp -r ./vim ~/.vim
+cp -r "$DIR/vim" ~/.vim
 # Install github copilot
 # git clone https://github.com/github/copilot.vim.git ~/.vim/pack/github/start/copilot.vim
 
@@ -116,17 +204,15 @@ cp -r ./vim ~/.vim
 
 # Copy the init.lua file to the nvim config directory but first delete it if it already exists
 mkdir -p ~/.config/nvim
-cp ./init.lua ~/.config/nvim/init.lua
+cp "$DIR/init.lua" ~/.config/nvim/init.lua
 
 
 # Create the directory using your specific user ID (usually 1000)
-sudo mkdir -p /run/user/$(id -u)
-
-# Give yourself ownership of it
-sudo chown -R $USER:$USER /run/user/$(id -u)
-
-# Ensure it has the correct write permissions
-sudo chmod 0700 /run/user/$(id -u)
+if [ ! -d "/run/user/$(id -u)" ]; then
+  sudo mkdir -p /run/user/$(id -u)
+  sudo chown -R $USER:$USER /run/user/$(id -u)
+  sudo chmod 0700 /run/user/$(id -u)
+fi
 
 sed -i 's/colorscheme default/colorscheme vscode/g' ~/.vim/vimrc
 #download fonts and install them in the system

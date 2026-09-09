@@ -21,5 +21,7 @@ nvim +PlugInstall +PlugUpdate2 +PlugClean! +qall
 # clone the repo https://github.com/Mofiqul/vscode.nvim
 # and run the command `:VscodeInstall` in nvim to install the vscode.nvim plugin
 
-git clone https://github.com/Mofiqul/vscode.nvim.git "${HOME}/.config/nvim/pack/plugins/start/vscode.nvim"
+if [ ! -d "${HOME}/.config/nvim/pack/plugins/start/vscode.nvim" ]; then
+  git clone https://github.com/Mofiqul/vscode.nvim.git "${HOME}/.config/nvim/pack/plugins/start/vscode.nvim"
+fi
 
