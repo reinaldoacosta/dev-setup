@@ -197,9 +197,6 @@ git config --global core.autocrlf false
 
 # Clone directly into ~/.vim
 cp -r "$DIR/vim" ~/.vim
-# Install github copilot
-# git clone https://github.com/github/copilot.vim.git ~/.vim/pack/github/start/copilot.vim
-
 ~/.vim/activate.sh
 
 # Copy the init.lua file to the nvim config directory but first delete it if it already exists
@@ -219,5 +216,4 @@ sed -i 's/colorscheme default/colorscheme vscode/g' ~/.vim/vimrc
 #the font URL is https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/AnonymousPro/complete/Anonymice%20Nerd%20Font%20Complete%20Mono.ttf
 
 echo -e "\033[0;32mDownload the following font: https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/AnonymousPro/complete/Anonymice%20Nerd%20Font%20Complete%20Mono.ttf and install it in the system.\033[0m"
-echo -e "\033[0;33mPlease restart your terminal and do not forget to log into Github Copilot in NeoVim.\033[0m"
 echo -e "\033[0;32mDone!\033[0m"

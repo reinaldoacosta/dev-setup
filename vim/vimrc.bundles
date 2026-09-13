@@ -110,9 +110,6 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'ntk148v/komau.vim'
 Plug 'Mofiqul/vscode.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
-Plug 'github/copilot.vim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'CopilotC-Nvim/CopilotChat.nvim', { 'branch': 'main' }
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release --target install' }
 Plug 'stevearc/dressing.nvim'
@@ -133,7 +130,6 @@ EOF
 " Plug 'hrsh7th/nvim-cmp'
 " Plug 'nvim-tree/nvim-web-devicons' "or Plug 'echasnovski/mini.icons'
 " Plug 'HakonHarnes/img-clip.nvim'
-" Plug 'zbirenbaum/copilot.lua'
 " Plug 'stevearc/dressing.nvim' " for enhanced input UI
 " Plug 'folke/snacks.nvim' " for modern input UI
 

@@ -170,18 +170,7 @@ if vim.fn.has('nvim-0.5') == 1 then
     end
   end
 
-  local status_copilot, copilot_chat = pcall(require, "CopilotChat")
-  if status_copilot then
-    copilot_chat.setup({
-      model = 'gpt-4o',
-      debug = true,
-      mappings = {
-        submit_prompt = {
-          insert = '<C-s>',
-        },
-      },
-    })
-  end
+
 
   vim.cmd([[
     augroup buffer_updates
